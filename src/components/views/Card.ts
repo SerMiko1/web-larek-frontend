@@ -110,5 +110,4 @@ class Card extends Component<ICard> {
 	}
 }
 
-// Экспортируем класс Card и интерфейс ICardActions
 export { Card, ICardActions };
