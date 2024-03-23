@@ -173,7 +173,7 @@ yarn build
 
 ## Ключевые типы данных
 
-### Модель лота (ILot)
+Модель лота (ILot)
 
 ```typescript
 interface ILot {
@@ -188,7 +188,7 @@ interface ILot {
 	removeFromBasket: () => void;
 }
 
-### Модель приложения (IAppState)
+Модель приложения (IAppState)
 
 interface IAppState {
     catalog: ILot[]; // Каталог лотов
@@ -203,7 +203,7 @@ interface IAppState {
     initOrder(): IOrder; // Инициализируем объект заказа
 }
 
-### Модель заказа (IOrder)
+Модель заказа (IOrder)
 
 interface IOrder {
     payment: IPaymentType; // Тип оплаты заказа
@@ -221,7 +221,7 @@ interface IOrder {
     postOrder(): void; // Отправка заказа
 }
 
-### События приложения (Events)
+События приложения (Events)
 
 enum Events {
 	LOAD_LOTS = 'catalog:changed', // подгружаем доступные лоты
