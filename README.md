@@ -172,10 +172,9 @@ yarn build
 - `postOrderLots`: Оформление заказа через запрос на сервер.
 
 ## Ключевые типы данных
-
+```typescript
 Модель лота (ILot)
 
-```typescript
 interface ILot {
 	id: string;
 	title: string;
