@@ -11,7 +11,13 @@ import { Modal } from './components/views/Modal';
 import { Basket } from './components/views/Basket';
 import { Card } from './components/views/Card';
 import { Success } from './components/views/Success';
-import { CatalogChangeEvent, Events, IFormErrors, ILot, IPaymentType } from './types';
+import {
+	CatalogChangeEvent,
+	Events,
+	IFormErrors,
+	ILot,
+	IPaymentType,
+} from './types';
 import { AppState } from './components/models/AppState';
 import { DeliveryForm } from './components/views/DeliveryForm';
 import { ContactsForm } from './components/views/ContactsForm';
@@ -64,7 +70,7 @@ events.on<CatalogChangeEvent>(Events.LOAD_LOTS, () => {
 events.on(Events.OPEN_BASKET, () => {
 	modal.render({
 		content: basket.render({
-			valid: appData.getBasketLength() > 0
+			valid: appData.getBasketLength() > 0,
 		}),
 	});
 });
@@ -154,11 +160,11 @@ events.on(Events.VALIDATE_ORDER, (errors: Partial<IFormErrors>) => {
 	deliveryForm.valid = !payment && !address;
 	contactsForm.valid = !email && !phone;
 	deliveryForm.errors = Object.values({ payment, address })
-		.filter((i) => !!i)
-		.join('; ');
+		.filter((i) => typeof i === 'string') // Фильтруем только строки
+		.map((i) => i.toString());
 	contactsForm.errors = Object.values({ email, phone })
-		.filter((i) => !!i)
-		.join('; ');
+		.filter((i) => typeof i === 'string') // Фильтруем только строки
+		.map((i) => i.toString()); // Преобразуем значения в строки и создаем массив строк
 });
 
 // Заполняем первую форму оформления заказа
@@ -183,31 +189,32 @@ events.on(Events.OPEN_SECOND_ORDER_PART, () => {
 events.on(Events.FINISH_SECOND_ORDER_PART, () => {
 	const order = appData.order;
 
-	api.postOrderLots({
-		payment: order.payment,
-		address: order.address,
-		email: order.email,
-		phone: order.phone,
-		total: appData.getTotalAmount(),
-		items: appData.getBasketIds(),
-	})
-	.then((result) => {
-		const success = new Success(cloneTemplate(successTemplate), events, {
-			onClick: () => {
-				modal.close();
-			},
-		});
-		modal.render({
-			content: success.render({
-				total: result.total,
-			}),
-		});
+	api
+		.postOrderLots({
+			payment: order.payment,
+			address: order.address,
+			email: order.email,
+			phone: order.phone,
+			total: appData.getTotalAmount(),
+			items: appData.getBasketIds(),
+		})
+		.then((result) => {
+			const success = new Success(cloneTemplate(successTemplate), events, {
+				onClick: () => {
+					modal.close();
+				},
+			});
+			modal.render({
+				content: success.render({
+					total: result.total,
+				}),
+			});
 
-		appData.clearBasket(); // Очищаем корзину после успешного заказа
-	})
-	.catch((err) => {
-		console.error(err);
-	});
+			appData.clearBasket(); // Очищаем корзину после успешного заказа
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 });
 
 // Блокируем прокрутку страницы при открытии модального окна
@@ -221,7 +228,8 @@ events.on(Events.CLOSE_MODAL, () => {
 });
 
 // Инициализируем загрузку списка лотов
-api.getLotList()
+api
+	.getLotList()
 	.then((res) => {
 		appData.catalog = res;
 	})
