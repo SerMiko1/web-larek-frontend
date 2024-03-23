@@ -1,4 +1,4 @@
-import { IEvents } from './events';
+import { IEvents } from './Events';
 
 // Абстрактный класс View
 export abstract class Component<T> {

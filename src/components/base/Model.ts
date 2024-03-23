@@ -1,4 +1,4 @@
-import { IEvents } from './events';
+import { IEvents } from './Events';
 
 // Класс модели
 export abstract class Model<T> {
