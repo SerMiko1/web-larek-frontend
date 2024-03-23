@@ -2,7 +2,7 @@ import { ILotCategory } from '../../types';
 import { CATEGOTY_MAP } from '../../utils/constants';
 import { ensureElement, formatSinaps } from '../../utils/utils';
 import { Component } from '../base/Component';
-import { IEvents } from '../base/events';
+import { IEvents } from '../base/Events';
 
 // Интерфейс для действий, доступных на карточке
 interface ICardActions {

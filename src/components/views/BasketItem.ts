@@ -1,5 +1,5 @@
 import { ensureElement, formatSinaps } from '../../utils/utils';
-import { IEvents } from '../base/events';
+import { IEvents } from '../base/Events';
 import { ICardActions } from './Card';
 import { Component } from '../base/Component';
 

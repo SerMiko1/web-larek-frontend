@@ -1,6 +1,6 @@
 import { ensureElement, formatSinaps } from "../../utils/utils"; // Импорт функций ensureElement и formatSinaps из утилитной папки
 import { Component } from "../base/Component"; // Импорт базового класса Component
-import { IEvents } from "../base/events"; // Импорт интерфейса IEvents из папки событий
+import { IEvents } from "../base/Events"; // Импорт интерфейса IEvents из папки событий
 
 /**
  * Интерфейс финальной страницы заказа
@@ -45,9 +45,9 @@ class Success extends Component<ISuccess> {
      * Setter для установки общей стоимости заказа
      * @param {number} value - новое значение общей стоимости заказа
      */
-    set total(value: number){
-        this._total.textContent = `Списано ${formatSinaps(value)}`; // Устанавливаем текст элемента общей стоимости заказа с форматированием числа
+    set total(value: number) {
+        this.setText(this._total, `Списано ${formatSinaps(value)}`); // Используем метод setText для установки текстового контента
     }
 }
 
-export { Success } // Экспорт класса Success для использования в других файлах
+export { Success };

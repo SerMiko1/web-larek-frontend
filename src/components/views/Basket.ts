@@ -1,7 +1,7 @@
 import { Events } from '../../types';
 import { createElement, ensureElement, formatSinaps } from '../../utils/utils';
 import { Component } from '../base/Component';
-import { EventEmitter } from '../base/events';
+import { EventEmitter } from '../base/Events';
 
 // Интерфейс для представления корзины
 interface IBasketView {

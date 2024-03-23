@@ -1,7 +1,7 @@
 import _ from 'lodash'; 
 import { Events, IAppState, ILot, IOrder } from '../../types';
 import { Model } from '../base/Model'; 
-import { IEvents } from '../base/events';
+import { IEvents } from '../base/Events';
 import { LotItem } from './LotItem'; 
 import { Order } from './Order'; 
 

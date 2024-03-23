@@ -1,7 +1,7 @@
 import { Events } from '../../types'; 
 import { ensureElement, formatNumber } from '../../utils/utils'; 
 import { Component } from '../base/Component'; 
-import { IEvents } from '../base/events'; 
+import { IEvents } from '../base/Events'; 
 
 /**
  * Интерфейс страницы
