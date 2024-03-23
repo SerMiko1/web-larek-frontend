@@ -3,7 +3,7 @@ export type ApiListResponse<Type> = {
 	items: Type[]; // Массив элементов указанного типа
 };
 
-// Определяем типы HTTP-методов, поддерживаемых API
+// Определяем типы HTTP-методов,  поддерживаемых API
 export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 
 // Базовый класс для работы с API

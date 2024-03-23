@@ -13,7 +13,7 @@ export interface IEvents {
 	on<T extends object>(event: EventName, callback: (data: T) => void): void;
 	// Метод для инициирования события
 	emit<T extends object>(event: string, data?: T): void;
-	// Метод для создания триггера события
+	// Метод для создания  триггера события
 	trigger<T extends object>(
 		event: string,
 		context?: Partial<T>
