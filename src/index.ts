@@ -3,7 +3,7 @@ import './scss/styles.scss';
 
 // Импортируем необходимые утилиты, компоненты и типы данных
 import { cloneTemplate, ensureElement } from './utils/utils';
-import { EventEmitter } from './components/base/events';
+import { EventEmitter } from './components/base/Events';
 import { LarekAPI } from './components/LarekAPI';
 import { API_URL, CDN_URL } from './utils/constants';
 import { Page } from './components/views/Page';
@@ -95,7 +95,7 @@ events.on(Events.OPEN_LOT, (item: ILot) => {
 			description: item.description,
 			image: item.image,
 			price: item.price,
-			button: item.isOrdered ? 'Удалить' : 'Купить',
+			button: item.isOrdered ? 'Удалить из корзины' : 'Купить',
 		}),
 	});
 });
